@@ -1,0 +1,22 @@
+{
+  "2aff452c-66c1-4798-985b-59309a91586d": {
+    "job_id": "2aff452c-66c1-4798-985b-59309a91586d",
+    "status": "completed",
+    "progress": "Completed successfully",
+    "created_at": "2025-11-05T03:23:41.977033",
+    "completed_at": "2025-11-05T03:26:11.617590",
+    "error": null,
+    "output_file": "handbook_2aff452c-66c1-4798-985b-59309a91586d.docx",
+    "original_filename": "presentation_a4.pptx"
+  },
+  "297cb2d8-4bf5-437a-b630-285174edd68e": {
+    "job_id": "297cb2d8-4bf5-437a-b630-285174edd68e",
+    "status": "completed",
+    "progress": "Completed successfully",
+    "created_at": "2025-11-05T03:48:22.342389",
+    "completed_at": "2025-11-05T03:54:23.968634",
+    "error": null,
+    "output_file": "handbook_297cb2d8-4bf5-437a-b630-285174edd68e.docx",
+    "original_filename": "Enhancing Telecom Fiber Services.pptx"
+  }
+}

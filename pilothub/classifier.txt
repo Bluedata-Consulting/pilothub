@@ -1,0 +1,1 @@
+ title, agenda, section_introduction, content_slide, case_study, exercise_activity, quiz, summary, lab_slide

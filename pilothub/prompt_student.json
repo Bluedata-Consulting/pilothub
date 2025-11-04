@@ -1,0 +1,38 @@
+{
+  "title": {
+    "objective": "Introduce the session and set the learning context.",
+    "prompt": "This is a title slide.\nTask: Create the handout opener from a title slide.\n\nProduce (Markdown)\n## <COURSE_TITLE>\n\n\n### Purpose\n- <1–2 lines stating what this course enables>\n\n\n### How to use this handout\n- Skim key points → study examples → do exercises → check answers."
+  },
+  "agenda": {
+    "objective": "Summarize the learning flow and module coverage.",
+    "prompt": "This is an agenda slide.\n\nTask: Turn agenda bullets into a navigable plan.\n\n\nProduce\n## Agenda\n- <Item 1> — expectation: <one line>\n- <Item 2> — expectation: <one line>\n- …"
+  },
+  "section_introduction": {
+    "objective": "Introduce a new module or section and its importance.",
+    "prompt": "This is a section introduction slide.\nThis slide talks about the learning objectives of the section.\n\n\nTask: Introduce a new module.\n\nProduce\n## <SECTION_TITLE_TEXT>\n### Where we are\n<2–3 sentences linking from prior content using <ROLLING_HISTORY>.>\n\n### Key ideas\n- <3–6 bullets, one idea each>"
+  },
+  "content_slide": {
+    "objective": "Deliver core learning material with explanations.",
+    "prompt": "Task: Convert a concept slide into notes with practice.\n\n\n### Explanation\n<1–3 short paragraphs expanding the bullets.>\n\nApproach\n- Follow Explain → Example → Practice.\n- Add brief retrieval checks and a mini exercise whenever feasible.\n- Focus strictly on this slide content. Use previous_summary only to avoid repetition.\n- Technical Notes may be bullets and/or short paragraphs; be precise and explanation-forward. select the component which are relevant for the slide:\n  - A clear explanation of what’s on this slide: DO not start with \"This slide presents etc.\" keep the language direct, explain the topic directly,\n  - One concrete example tailored to manufacturing industry, (if logical/applicable) (do not use heading, just keep this as part of the generic content explanation)\n  - One analogy that clarifies the concept, (if logical/applicable) - Analogy (a simple analogy that clarifies the concept for non-experts) (if logical/applicable) (do not use heading, just keep this as part of the generic content explanation)\n  - Why it matters (decision/risk/cost/latency/compliance/ops angle relevant to manufacturing) (if logical/applicable) (do not use heading, just keep this as part of the generic content explanation)\n- Use mix of short paragraphs and bullet points, - Keep the content size lesser than 6 bullet points OR 200 words. - keep it detailed, structured."
+  },
+  "case_study": {
+    "objective": "Provide real-world context and practical understanding.",
+    "prompt": "This is a case study slide. Generate:\n\nTask: Turn a case study slide into a short scenario and decision analysis.\n\n\nProduce\n## Case study: <short title>\n### Scenario\n<≤120 words describing context and goal.>\nCurrent scenario and problem statement.\n\n### Decision framework\n- **Options:** <A, B, C>\n- **Criteria:** <cost, risk, time, quality…>\n- **Trade-offs:** <one line each>\n\n### Worked path (optional - if available in current slide)\n1. <step>\n2. <step>\n**Outcome:** <expected result>\n\n\n### Exercises\n- **Reflection:** what would change your decision? list two signals."
+  },
+  "exercise_activity": {
+    "objective": "Encourage participant engagement and knowledge application.",
+    "prompt": "This is an exercise or activity slide.\n\n- Describe the story in detail, align it to question asked."
+  },
+  "quiz": {
+    "objective": "Test learner understanding through questions.",
+    "prompt": "This is a quiz slide.\n\nTask: Convert quiz items into clear practice with rationales.\n\n- Explain the core concept THIS question tests and the fastest reasoning path to eliminate two distractors; add a short analogy if helpful.\n- Provide slightly detailed explanation for the right answer with example."
+  },
+  "summary": {
+    "objective": "Recap the session and reinforce key takeaways.",
+    "prompt": "This is a summary slide, summarizing this section.\n\nTask: Produce a tight recap.\n\nProduce\n## Summary\n<3–5 sentences aligned to outcomes.>\n- Synthesize only what appears on THIS slide into a decision checklist or action frame tailored the history of slides covered.\n- Provide a one liner example on the topic.\n\n\n### Common pitfalls\n- <3 bullets>"
+  },
+  "lab_slide": {
+    "objective": "Guide hands-on practice or demonstration.",
+    "prompt": "This is a lab slide.\n- Describe the objective of the lab, tools used and core concepts covered. Use history to relate.\n- Introduce the lab, monitor progress, handle common issues, and discuss results post-lab."
+  }
+}
