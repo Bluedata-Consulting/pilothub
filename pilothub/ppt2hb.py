@@ -256,36 +256,30 @@ class AIHandbookMaker:
         with open(self.summary_path, 'a', encoding='utf-8') as f:
             f.write(summary_line + "\n")
     def ppt_to_pdf(self):
-        """Convert PPTX to PDF — tries COM first, then falls back to Aspose if COM fails."""
-        print("📄 Converting PPT to PDF...")
+            """Convert PPTX to PDF using LibreOffice on Ubuntu."""
+            print("📄 Converting PPTX to PDF...")
 
-        try:
-            # Try using PowerPoint COM automation
-            from comtypes import client as com_client
-            powerpoint = com_client.CreateObject("PowerPoint.Application")
-            powerpoint.Visible = 1
-            presentation = powerpoint.Presentations.Open(self.ppt_path)
-            presentation.SaveAs(self.pdf_path, 32)  # 32 = PDF
-            presentation.Close()
-            powerpoint.Quit()
-            print("✅ PDF created successfully using PowerPoint COM.")
-            return
-
-        except Exception as e:
-            print(f"")
-            print("")
+            output_dir = os.path.dirname(self.ppt_path)
+            output_pdf = os.path.join(output_dir, "slides.pdf")  # ✅ consistent name
 
             try:
-                import aspose.slides as slides
-                import aspose.pydrawing as drawing
+                subprocess.run([
+                    "libreoffice", "--headless", "--convert-to", "pdf",
+                    "--outdir", output_dir, self.ppt_path
+                ], check=True)
 
-                with slides.Presentation(self.ppt_path) as presentation:
-                    presentation.save(self.pdf_path, slides.export.SaveFormat.PDF)
-                print("")
-            except ImportError:
-                print("")
-            except Exception as e2:
-                print(f"")
+                # Rename generated file to match expected name
+                generated_pdf = Path(self.ppt_path).with_suffix(".pdf")
+                if os.path.exists(generated_pdf):
+                    os.rename(generated_pdf, output_pdf)
+
+                print(f"✅ PDF created successfully at {output_pdf}")
+                return output_pdf
+
+            except Exception as e:
+                print(f"❌ LibreOffice conversion failed: {e}")
+                raise
+
 
 
     def pdf_to_images(self, output_folder="pdf_images"):
@@ -1382,4 +1376,5 @@ async def health_check():
 
 if __name__ == "__main__":
     import uvicorn
+
     uvicorn.run(app, host="0.0.0.0", port=8016)
