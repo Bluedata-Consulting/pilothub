@@ -1,0 +1,82 @@
+version: '3.9'
+
+services:
+  # Trainer Handbook Service (runs on port 8000)
+  trainer-handbook-api:
+    build:
+      context: .
+      dockerfile: Dockerfile.trainer
+    container_name: trainer-handbook-api
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./uploads_trainer:/app/uploads
+      - ./outputs_trainer:/app/outputs
+      - ./prompt.json:/app/prompt.json
+      - ./classifier.txt:/app/classifier.txt
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - handbook-network
+
+  # Student Handbook Service (runs on port 8080)
+  student-handbook-api:
+    build:
+      context: .
+      dockerfile: Dockerfile.student
+    container_name: student-handbook-api
+    ports:
+      - "8080:8080"
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./uploads_student:/app/uploads
+      - ./outputs_student:/app/outputs
+      - ./prompt_student.json:/app/prompt_student.json
+      - ./classifier.txt:/app/classifier.txt
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - handbook-network
+
+  # Streamlit Frontend (runs on port 8501)
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    container_name: handbook-frontend
+    ports:
+      - "8501:8501"
+    environment:
+      - PYTHONUNBUFFERED=1
+      
+      - STUDENT_API_URL=http://student-handbook-api:8080
+      - TRAINER_API_URL=http://trainer-handbook-api:8000
+    depends_on:
+      - trainer-handbook-api
+      - student-handbook-api
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8501/_stcore/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - handbook-network
+
+networks:
+  handbook-network:
+    driver: bridge
