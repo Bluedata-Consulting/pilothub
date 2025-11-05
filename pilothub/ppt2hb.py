@@ -939,7 +939,7 @@ class AIHandbookMaker:
             print(f"{'='*60}\n")
 
             # Add topic heading
-            master_doc.add_heading(f"📘 Topic {topic_idx}: {topic_name}", level=1)
+            # master_doc.add_heading(f"📘 Topic {topic_idx}: {topic_name}", level=1)
 
             # Reset previous summary
             self._clear_summary()
@@ -966,7 +966,7 @@ class AIHandbookMaker:
                 self._append_summary(f"Slide {page_num + 1}: {summary}")
 
                 # Add slide heading
-                master_doc.add_heading(f"Slide {page_num + 1}", level=2)
+                # master_doc.add_heading(f"Slide {page_num + 1}", level=2)
 
                 # Add slide image
                 master_doc.add_picture(img_path, width=Inches(6.5))
@@ -1378,3 +1378,4 @@ if __name__ == "__main__":
     import uvicorn
 
     uvicorn.run(app, host="0.0.0.0", port=8016)
+
